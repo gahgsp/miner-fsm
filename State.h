@@ -13,13 +13,13 @@ class State {
 public:
 
     // This will execute when the state is entered.
-    virtual void Enter(Miner*) = 0;
+    virtual void Enter(BaseEntity*) = 0;
 
     // This is called each time the entity's update function is called.
-    virtual void Execute(Miner*) = 0;
+    virtual void Execute(BaseEntity*) = 0;
 
     // This will execute when the state is exited.
-    virtual void Exit(Miner*) = 0;
+    virtual void Exit(BaseEntity*) = 0;
 
     virtual ~State() {}
 };

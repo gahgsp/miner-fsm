@@ -29,7 +29,7 @@ public:
     // All entities must implement an update function.
     virtual void Update() = 0; // This "= 0" means that subclasses have to implement this function.
 
-    int ID() const { return m_ID; }
+    int ID() { return m_ID; }
 };
 
 #endif //GOLD_MINER_FSM_BASEENTITY_H

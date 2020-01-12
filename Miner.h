@@ -7,6 +7,7 @@
 
 #include "BaseEntity.h"
 #include "State.h"
+#include "Location.h"
 
 class Miner : public BaseEntity {
 private:
@@ -15,7 +16,7 @@ private:
     State* m_pCurrentState;
 
     // The place where the miner is currently situated.
-    location_type m_Location;
+    Location m_Location;
 
     // How many gold nuggets the miner is currently holding.
     int m_iGoldCarried;
@@ -38,6 +39,19 @@ public:
 
     // This method changes the current state to the new state.
     void ChangeState(State* pNewState);
+
+    void ChangeLocation(enum Location location);
+
+    // Returns the location where the miner is currently situated.
+    Location Location();
+
+    void AddToGoldCarried(int goldNuggetsQty);
+
+    void IncreaseFatigue();
+
+    bool PocketsFull();
+
+    bool Thirsty();
 };
 
 #endif //GOLD_MINER_FSM_MINER_H

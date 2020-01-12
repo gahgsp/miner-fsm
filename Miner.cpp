@@ -26,3 +26,23 @@ void Miner::ChangeState(State *pNewState) {
     // Call the entry method for the new state.
     m_pCurrentState->Enter(this);
 }
+
+void Miner::ChangeLocation(enum Location location) {
+    m_Location = location;
+}
+
+Location Miner::Location() {
+    return m_Location;
+}
+
+void Miner::AddToGoldCarried(int goldNuggetsQty) {
+    m_iGoldCarried += goldNuggetsQty;
+}
+
+void Miner::IncreaseFatigue() {
+    m_iFatigue++;
+}
+
+bool Miner::PocketsFull() {
+    return m_iGoldCarried >= 100; // We should make this value dinamic.
+}

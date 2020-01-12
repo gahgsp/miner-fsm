@@ -8,9 +8,9 @@
 
 #include "Miner.h"
 
+template <class BaseEntity>
 class State {
 public:
-    virtual ~State() {}
 
     // This will execute when the state is entered.
     virtual void Enter(Miner*) = 0;
@@ -20,6 +20,8 @@ public:
 
     // This will execute when the state is exited.
     virtual void Exit(Miner*) = 0;
+
+    virtual ~State() {}
 };
 
 

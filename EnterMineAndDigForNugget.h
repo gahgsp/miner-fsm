@@ -8,8 +8,21 @@
 
 #include "State.h"
 
-class EnterMineAndDigForNugget : public State {
+class EnterMineAndDigForNugget : public State<Miner> {
+private:
 
+    EnterMineAndDigForNugget() {};
+
+public:
+
+    // Singleton pattern.
+    static EnterMineAndDigForNugget* Instance();
+
+    virtual void Enter(Miner* pMiner);
+
+    virtual void Execute(Miner* pMiner);
+
+    virtual void Exit(Miner* pMiner);
 };
 
 

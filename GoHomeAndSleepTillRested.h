@@ -8,7 +8,7 @@
 
 #include "State.h"
 
-class GoHomeAndSleepTillRested : public State {
+class GoHomeAndSleepTillRested : public State<Miner> {
 
 };
 

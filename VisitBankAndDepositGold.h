@@ -8,8 +8,17 @@
 
 #include "State.h"
 
-class VisitBankAndDepositGold : public State {
+class VisitBankAndDepositGold : public State<Miner> {
+public:
 
+    void Enter(Miner *miner);
+
+    void Execute(Miner *miner);
+
+    void Exit(Miner *miner);
+
+    // Singleton pattern.
+    static VisitBankAndDepositGold* Instance();
 };
 
 

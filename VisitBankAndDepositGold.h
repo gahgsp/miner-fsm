@@ -7,8 +7,13 @@
 
 
 #include "State.h"
+#include "Miner.h"
 
 class VisitBankAndDepositGold : public State<Miner> {
+private:
+
+    VisitBankAndDepositGold() {}
+
 public:
 
     void Enter(Miner *miner);

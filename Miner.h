@@ -7,13 +7,23 @@
 
 #include "BaseEntity.h"
 #include "State.h"
+#include "StateMachine.h"
 #include "Location.h"
 
 class Miner : public BaseEntity {
 private:
 
+    // A pointer to the State Machine.
+    StateMachine<Miner>* m_pStateMachine;
+
     // A pointer to the current state.
-    State* m_pCurrentState;
+    State<Miner>* m_pCurrentState;
+
+    // A pointer to the previous state.
+    State<Miner>* m_pPreviousState;
+
+    // Global behaviour.
+    State<Miner>* m_pGlobalState;
 
     // The place where the miner is currently situated.
     Location m_Location;
@@ -32,13 +42,17 @@ private:
 
 public:
 
-    Miner(int ID);
+    Miner(int id);
+
+    ~Miner();
 
     // This must be implemented.
     void Update();
 
     // This method changes the current state to the new state.
-    void ChangeState(State* pNewState);
+    void ChangeState(State<Miner>* pNewState);
+
+    void RevertToPreviousState();
 
     void ChangeLocation(enum Location location);
 
@@ -52,6 +66,20 @@ public:
     bool PocketsFull();
 
     bool Thirsty();
+
+    void DepositGold(int goldQty);
+
+    int GoldCarried();
+
+    void SetGoldInPockets(int goldQty);
+
+    int Wealth();
+
+    bool Fatigued();
+
+    void DecreaseFatigue();
+
+    void BuyAndDrinkAWhiskey();
 };
 
 #endif //GOLD_MINER_FSM_MINER_H

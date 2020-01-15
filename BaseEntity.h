@@ -13,10 +13,13 @@ private:
 
     // Generates the next valid ID value for an entity.
     // Every time an entity is instantiated, the value is updated.
-    static int m_iNextValidID;
+    int m_iNextValidID;
 
     // Called within the constructor to ensure that only valid IDs are provided.
-    void SetID(int val);
+    void SetID(int val) {
+        m_ID = val;
+        m_iNextValidID = m_ID + 1;
+    };
 
 public:
 

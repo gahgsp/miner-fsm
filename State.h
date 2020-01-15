@@ -5,9 +5,6 @@
 #ifndef GOLD_MINER_FSM_STATE_H
 #define GOLD_MINER_FSM_STATE_H
 
-
-#include "Miner.h"
-
 template <class BaseEntity>
 class State {
 public:

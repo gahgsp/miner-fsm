@@ -7,14 +7,20 @@
 
 
 #include "State.h"
+#include "Miner.h"
 
-class QuenchThirst : public State {
+class QuenchThirst : public State<Miner> {
+private:
+
+    QuenchThirst() {}
+
 public:
-    void Enter(Miner *miner) override;
 
-    void Execute(Miner *miner) override;
+    void Enter(Miner *miner);
 
-    void Exit(Miner *miner) override;
+    void Execute(Miner *miner);
+
+    void Exit(Miner *miner);
 
     static QuenchThirst* Instance();
 };

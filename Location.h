@@ -6,7 +6,10 @@
 #define GOLD_MINER_FSM_LOCATION_H
 
 enum Location {
-    GOLD_MINE
+    GOLD_MINE,
+    HOME,
+    BANK,
+    SALOON
 };
 
 #endif //GOLD_MINER_FSM_LOCATION_H

@@ -32,12 +32,17 @@ void EnterMineAndDigForNugget::Execute(Miner *pMiner) {
         pMiner->ChangeState(VisitBankAndDepositGold::Instance());
     }
 
-    // If the miner is thirsty, then we go to the sallon.
+    // If the miner is thirsty, then we go to the saloon.
     if (pMiner->Thirsty()) {
-        pMiner->ChangeState(QuenchThirst::Instance())
+        pMiner->ChangeState(QuenchThirst::Instance());
     }
 }
 
 void EnterMineAndDigForNugget::Exit(Miner *pMiner) {
     std::cout << "Leaving the mine with the pocket full of gold!" << std::endl;
+}
+
+EnterMineAndDigForNugget* EnterMineAndDigForNugget::Instance() {
+    static EnterMineAndDigForNugget instance;
+    return &instance;
 }

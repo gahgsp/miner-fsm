@@ -7,6 +7,7 @@
 
 
 #include "State.h"
+#include "Miner.h"
 
 class EnterMineAndDigForNugget : public State<Miner> {
 private:
@@ -16,13 +17,13 @@ private:
 public:
 
     // Singleton pattern.
-    static EnterMineAndDigForNugget* Instance();
+    static EnterMineAndDigForNugget *Instance();
 
-    virtual void Enter(Miner* pMiner);
+    virtual void Enter(Miner *pMiner);
 
-    virtual void Execute(Miner* pMiner);
+    virtual void Execute(Miner *pMiner);
 
-    virtual void Exit(Miner* pMiner);
+    virtual void Exit(Miner *pMiner);
 };
 
 

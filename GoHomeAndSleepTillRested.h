@@ -7,9 +7,23 @@
 
 
 #include "State.h"
+#include "Miner.h"
 
 class GoHomeAndSleepTillRested : public State<Miner> {
+private:
 
+    GoHomeAndSleepTillRested() {};
+
+public:
+
+    void Enter(Miner *miner);
+
+    void Execute(Miner *miner);
+
+    void Exit(Miner *miner);
+
+    // Singleton pattern.
+    static GoHomeAndSleepTillRested *Instance();
 };
 
 

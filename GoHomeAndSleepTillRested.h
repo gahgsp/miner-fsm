@@ -16,14 +16,14 @@ private:
 
 public:
 
+    // Singleton pattern.
+    static GoHomeAndSleepTillRested *Instance();
+
     void Enter(Miner *miner);
 
     void Execute(Miner *miner);
 
     void Exit(Miner *miner);
-
-    // Singleton pattern.
-    static GoHomeAndSleepTillRested *Instance();
 };
 
 

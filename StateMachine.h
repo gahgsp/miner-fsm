@@ -6,23 +6,23 @@
 #define GOLD_MINER_FSM_STATEMACHINE_H
 
 #include <cstddef>
-#include <assert.h>
+#include <cassert>
 #include "State.h"
 
-template <class BaseEntity>
+template<class BaseEntity>
 class StateMachine {
 private:
 
     // A pointer to the entity that owns this instance.
-    BaseEntity* m_pOwner;
+    BaseEntity *m_pOwner;
 
-    State<BaseEntity>* m_pCurrentState;
+    State<BaseEntity> *m_pCurrentState;
 
 public:
-    StateMachine(BaseEntity* owner): m_pOwner(owner), m_pCurrentState(NULL) {}
+    StateMachine(BaseEntity *owner) : m_pOwner(owner), m_pCurrentState(NULL) {}
 
     // Methods to initialize the FSM.
-    void SetCurrentState(State<BaseEntity>* currState) {
+    void SetCurrentState(State<BaseEntity> *currState) {
         m_pCurrentState = currState;
     }
 
@@ -35,7 +35,7 @@ public:
     }
 
     // Change to a new state.
-    void ChangeState(State<BaseEntity>* pNewState) {
+    void ChangeState(State<BaseEntity> *pNewState) {
         assert(pNewState && "<StateMachine::ChangeState>: Trying to change to a null state.");
 
         // Call the exit method of the current state.
@@ -48,11 +48,6 @@ public:
         m_pCurrentState->Enter(m_pOwner);
     }
 
-    // Getters.
-    State<BaseEntity>* CurrentState() const { return m_pCurrentState; }
-
-    // Checks if the the current state is equal to the state passed as a parameter.
-    bool IsInState(const State<BaseEntity>& state) const;
 };
 
 #endif //GOLD_MINER_FSM_STATEMACHINE_H

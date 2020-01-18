@@ -6,6 +6,11 @@
 #include "VisitBankAndDepositGold.h"
 #include "GoHomeAndSleepTillRested.h"
 
+VisitBankAndDepositGold *VisitBankAndDepositGold::Instance() {
+    static VisitBankAndDepositGold instance;
+    return &instance;
+}
+
 void VisitBankAndDepositGold::Enter(Miner *miner) {
     if (miner->Location() != BANK) {
         std::cout << "Going to the Bank!" << std::endl;
@@ -28,9 +33,4 @@ void VisitBankAndDepositGold::Execute(Miner *miner) {
 
 void VisitBankAndDepositGold::Exit(Miner *miner) {
     std::cout << "Leaving the bank a bit more richer..." << std::endl;
-}
-
-VisitBankAndDepositGold* VisitBankAndDepositGold::Instance() {
-    static VisitBankAndDepositGold instance;
-    return &instance;
 }

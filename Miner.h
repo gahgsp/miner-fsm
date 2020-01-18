@@ -10,6 +10,10 @@
 #include "StateMachine.h"
 #include "Location.h"
 
+//------------------------------- Constants --------------------------------
+//
+//--------------------------------------------------------------------------
+
 // The amount of gold the miner can carry.
 const int MaxGoldNuggets = 3;
 // Above this level the miner is sleepy.
@@ -17,14 +21,15 @@ const int MaxTirednessLevel = 5;
 // Above this level the miner is thirsty.
 const int MaxThirstyLevel = 5;
 
+//------------------------------- Miner -----------------------------------
+// The class with the miner definitions and properties.
+//--------------------------------------------------------------------------
+
 class Miner : public BaseEntity {
 private:
 
     // A pointer to the State Machine.
-    StateMachine<Miner>* m_pStateMachine;
-
-    // A pointer to the current state.
-    State<Miner>* m_pCurrentState;
+    StateMachine<Miner> *m_pStateMachine;
 
     // The place where the miner is currently situated.
     Location m_Location;
@@ -50,34 +55,55 @@ public:
     // This must be implemented.
     void Update();
 
-    StateMachine<Miner>* GetFSM() const { return m_pStateMachine; }
+    //--------------------------- State Machine ----------------------------------
+    // Defines all the implementations that will effect the miner's state machine.
+    //----------------------------------------------------------------------------
 
     void ChangeLocation(enum Location location);
 
     // Returns the location where the miner is currently situated.
     Location Location();
 
+    StateMachine<Miner> *GetFSM() const { return m_pStateMachine; }
+
+    //--------------------------- Mining Behavior ------------------------------
+    // All the methods to handle the mining behavior (EnterMineAndDigForNugget).
+    //--------------------------------------------------------------------------
+
     void AddToGoldCarried(int goldNuggetsQty);
-
-    void IncreaseFatigue();
-
-    bool PocketsFull();
-
-    bool Thirsty();
-
-    void DepositGold(int goldQty);
-
-    int GoldCarried();
 
     void SetGoldInPockets(int goldQty);
 
+    void IncreaseFatigue();
+
+    int GoldCarried();
+
+    bool PocketsFull();
+
+    //--------------------------- Banking Behavior ------------------------------
+    // All the methods to handle the banking behavior (VisitBankAndDepositGold).
+    //---------------------------------------------------------------------------
+
+    void DepositGold(int goldQty);
+
     int Wealth();
+
+    //--------------------------- Thirst Behavior ------------------------------
+    // All the methods to handle the banking behavior (QuenchThirst).
+    //--------------------------------------------------------------------------
+
+    void BuyAndDrinkAWhiskey();
+
+    bool Thirsty();
+
+    //--------------------------- Rest Behavior ---------------------------------
+    // All the methods to handle the resting behavior (GoHomeAndSleepTillRested).
+    //---------------------------------------------------------------------------
 
     bool Fatigued();
 
     void DecreaseFatigue();
 
-    void BuyAndDrinkAWhiskey();
 };
 
 #endif //GOLD_MINER_FSM_MINER_H

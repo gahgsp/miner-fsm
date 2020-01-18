@@ -6,6 +6,11 @@
 #include "QuenchThirst.h"
 #include "EnterMineAndDigForNugget.h"
 
+QuenchThirst *QuenchThirst::Instance() {
+    static QuenchThirst instance;
+    return &instance;
+}
+
 void QuenchThirst::Enter(Miner *miner) {
     if (miner->Location() != SALOON) {
         miner->ChangeLocation(SALOON);
@@ -23,9 +28,4 @@ void QuenchThirst::Execute(Miner *miner) {
 
 void QuenchThirst::Exit(Miner *miner) {
     std::cout << "Leaving the saloon, feeling refreshed!" << std::endl;
-}
-
-QuenchThirst *QuenchThirst::Instance() {
-    static QuenchThirst instance;
-    return &instance;
 }

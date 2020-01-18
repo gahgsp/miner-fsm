@@ -7,6 +7,11 @@
 #include "VisitBankAndDepositGold.h"
 #include "QuenchThirst.h"
 
+EnterMineAndDigForNugget *EnterMineAndDigForNugget::Instance() {
+    static EnterMineAndDigForNugget instance;
+    return &instance;
+}
+
 void EnterMineAndDigForNugget::Enter(Miner *pMiner) {
     // If the miner is not at the gold mine, he must
     // change his location to the gold mine.
@@ -40,9 +45,4 @@ void EnterMineAndDigForNugget::Execute(Miner *pMiner) {
 
 void EnterMineAndDigForNugget::Exit(Miner *pMiner) {
     std::cout << "Leaving the mine with the pocket full of gold!" << std::endl;
-}
-
-EnterMineAndDigForNugget* EnterMineAndDigForNugget::Instance() {
-    static EnterMineAndDigForNugget instance;
-    return &instance;
 }

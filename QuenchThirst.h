@@ -16,13 +16,14 @@ private:
 
 public:
 
+    // Singleton pattern.
+    static QuenchThirst *Instance();
+
     void Enter(Miner *miner);
 
     void Execute(Miner *miner);
 
     void Exit(Miner *miner);
-
-    static QuenchThirst* Instance();
 };
 
 

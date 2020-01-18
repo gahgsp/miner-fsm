@@ -6,6 +6,11 @@
 #include "GoHomeAndSleepTillRested.h"
 #include "EnterMineAndDigForNugget.h"
 
+GoHomeAndSleepTillRested *GoHomeAndSleepTillRested::Instance() {
+    static GoHomeAndSleepTillRested instance;
+    return &instance;
+}
+
 void GoHomeAndSleepTillRested::Enter(Miner *miner) {
     if (miner->Location() != HOME) {
         std::cout << "Going home to get some rest..." << std::endl;
@@ -26,9 +31,4 @@ void GoHomeAndSleepTillRested::Execute(Miner *miner) {
 
 void GoHomeAndSleepTillRested::Exit(Miner *miner) {
     std::cout << "Leaving the house..." << std::endl;
-}
-
-GoHomeAndSleepTillRested* GoHomeAndSleepTillRested::Instance() {
-    static GoHomeAndSleepTillRested instance;
-    return &instance;
 }

@@ -3,9 +3,6 @@
 #include "Miner.h"
 
 int main() {
-
-    std::cout << "IIUUU" << std::endl;
-
     Miner miner(1);
 
     for (int i = 0; i < 10; i++) {

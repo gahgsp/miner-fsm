@@ -17,7 +17,7 @@ void QuenchThirst::Execute(Miner *miner) {
     if (miner->Thirsty()) {
         miner->BuyAndDrinkAWhiskey();
         std::cout << "Enough alcohol for today..." << std::endl;
-        miner->ChangeState(EnterMineAndDigForNugget::Instance());
+        miner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
     }
 }
 

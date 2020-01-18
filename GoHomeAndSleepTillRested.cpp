@@ -16,7 +16,7 @@ void GoHomeAndSleepTillRested::Enter(Miner *miner) {
 void GoHomeAndSleepTillRested::Execute(Miner *miner) {
     if (!miner->Fatigued()) {
         std::cout << "Enough rest! Time to dig more gold!" << std::endl;
-        miner->ChangeState(EnterMineAndDigForNugget::Instance());
+        miner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
     } else {
         // Sleep
         miner->DecreaseFatigue();

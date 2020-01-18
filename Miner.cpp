@@ -5,7 +5,6 @@
 #include <assert.h>
 #include "Miner.h"
 #include "GoHomeAndSleepTillRested.h"
-#include "MinerGlobalState.h"
 #include "StateMachine.h"
 
 Miner::Miner(int id) : BaseEntity(id),
@@ -13,12 +12,10 @@ Miner::Miner(int id) : BaseEntity(id),
                        m_iGoldCarried(0),
                        m_iMoneyInBank(0),
                        m_iThirst(0),
-                       m_iFatigue(0),
-                       m_pCurrentState(GoHomeAndSleepTillRested::Instance()){
+                       m_iFatigue(0) {
     // Set up the State Machine.
     m_pStateMachine = new StateMachine<Miner>(this);
     m_pStateMachine->SetCurrentState(GoHomeAndSleepTillRested::Instance());
-    m_pStateMachine->SetGlobalState(MinerGlobalState::Instance());
 }
 
 Miner::~Miner() {
@@ -28,20 +25,6 @@ Miner::~Miner() {
 void Miner::Update() {
     m_iThirst += 1;
     m_pStateMachine->Update();
-}
-
-void Miner::ChangeState(State<Miner> *pNewState) {
-    // Assert that both states are valid states.
-    assert(m_pCurrentState && pNewState);
-
-    // Call the exit method of the current state.
-    m_pCurrentState->Exit(this);
-
-    // Change the state to the new state.
-    m_pCurrentState = pNewState;
-
-    // Call the entry method for the new state.
-    m_pCurrentState->Enter(this);
 }
 
 void Miner::ChangeLocation(enum Location location) {
@@ -61,7 +44,7 @@ void Miner::IncreaseFatigue() {
 }
 
 bool Miner::PocketsFull() {
-    return m_iGoldCarried >= 100; // TODO: We should make this value dynamic.
+    return m_iGoldCarried >= MaxGoldNuggets;
 }
 
 void Miner::DepositGold(int goldQty) {
@@ -81,11 +64,11 @@ int Miner::Wealth() {
 }
 
 bool Miner::Fatigued() {
-    return m_iFatigue > 20; // TODO: We should make this value dynamic.
+    return m_iFatigue >= MaxTirednessLevel;
 }
 
 bool Miner::Thirsty() {
-    return m_iThirst > 20; // TODO: We should make this value dynamic.
+    return m_iThirst >= MaxThirstyLevel;
 }
 
 void Miner::DecreaseFatigue() {

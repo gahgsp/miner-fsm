@@ -10,6 +10,13 @@
 #include "StateMachine.h"
 #include "Location.h"
 
+// The amount of gold the miner can carry.
+const int MaxGoldNuggets = 3;
+// Above this level the miner is sleepy.
+const int MaxTirednessLevel = 5;
+// Above this level the miner is thirsty.
+const int MaxThirstyLevel = 5;
+
 class Miner : public BaseEntity {
 private:
 
@@ -18,12 +25,6 @@ private:
 
     // A pointer to the current state.
     State<Miner>* m_pCurrentState;
-
-    // A pointer to the previous state.
-    State<Miner>* m_pPreviousState;
-
-    // Global behaviour.
-    State<Miner>* m_pGlobalState;
 
     // The place where the miner is currently situated.
     Location m_Location;
@@ -49,10 +50,7 @@ public:
     // This must be implemented.
     void Update();
 
-    // This method changes the current state to the new state.
-    void ChangeState(State<Miner>* pNewState);
-
-    void RevertToPreviousState();
+    StateMachine<Miner>* GetFSM() const { return m_pStateMachine; }
 
     void ChangeLocation(enum Location location);
 

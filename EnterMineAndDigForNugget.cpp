@@ -29,12 +29,12 @@ void EnterMineAndDigForNugget::Execute(Miner *pMiner) {
 
     // If we have enough gold, we can go to the bank.
     if (pMiner->PocketsFull()) {
-        pMiner->ChangeState(VisitBankAndDepositGold::Instance());
+        pMiner->GetFSM()->ChangeState(VisitBankAndDepositGold::Instance());
     }
 
     // If the miner is thirsty, then we go to the saloon.
     if (pMiner->Thirsty()) {
-        pMiner->ChangeState(QuenchThirst::Instance());
+        pMiner->GetFSM()->ChangeState(QuenchThirst::Instance());
     }
 }
 

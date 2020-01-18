@@ -20,10 +20,10 @@ void VisitBankAndDepositGold::Execute(Miner *miner) {
     // Now, the Miner has 0 gold on his pockets.
     miner->SetGoldInPockets(0);
 
-    std::cout << "Gold has been succesfully deposit. Current wealth: " << miner->Wealth() << std::endl;
+    std::cout << "Gold has been succesfully deposited. Current wealth: " << miner->Wealth() << std::endl;
 
     // After a hard day, it is time to rest!
-    miner->ChangeState(GoHomeAndSleepTillRested::Instance());
+    miner->GetFSM()->ChangeState(GoHomeAndSleepTillRested::Instance());
 }
 
 void VisitBankAndDepositGold::Exit(Miner *miner) {
